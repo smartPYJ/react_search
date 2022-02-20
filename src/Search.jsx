@@ -6,15 +6,21 @@ import Table from "./Table"
 
 const Search = () => {
   const [query, setQuery] = useState("");
-  console.log(query);
+
+  const keys = ["first_name", "last_name", "email"]
+  const search = (data) => {
+    return data.filter((item) =>
+      keys.some((key) => item[key].toLowerCase().includes(query)));
+
+  };
   return (
 
     <div className="app">
 
-      <input type="text" placeholder="Search..." className="search" onChange={e => setQuery(e.target.value)} />
+      <input type="text" placeholder="Search..." className="search" onChange={e => setQuery(e.target.value.toLowerCase())} />
 
-      <Table/>
-{/* 
+      <Table data={search(Users)} />
+      {/* 
       <ul className="list">
 
 
